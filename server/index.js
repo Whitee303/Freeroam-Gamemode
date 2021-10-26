@@ -1,11 +1,20 @@
+import { PedTable } from './ped_list';
 import alt from 'alt-server';
-import * as chat from 'chat';
+import * as chat from 'chat'
 /// <reference types="@altv/types-shared" />
 
 //Code Author is Whitee || Discord Contact: Whitee#0296//
   /////////////////////////////////////////////////////
 /////                                              /////
     //////////////////////////////////////////////
+
+alt.Player.prototype.init = function init() {
+    this.data = {};
+};
+
+    alt.on('playerConnect', (player) => {
+        player.init();
+    });
 
 function randomNumber(min, max) {
     return Math.round(Math.random() * (max - min) + min);
@@ -14,6 +23,10 @@ function randomNumber(min, max) {
 function getRandomListEntry(list) {
     return randomNumber(0, list.length - 1);
 } // This Function From Stuyk Freeroam
+
+function randomColor() {
+    return Math.floor(Math.random() * 255);
+}
 
 
 
@@ -25,6 +38,7 @@ const PositionSpawnTable = [
 
 ]; //This Table contains player spawn position. If you want add more position then: {x: yourpositionx, y:yourpositiony, z:yourpositionz}
 const spawn = PositionSpawnTable[getRandomListEntry(PositionSpawnTable)]; ////
+
 
 
 
@@ -47,13 +61,13 @@ alt.on('playerConnect', (player) => {
 chat.registerCmd("v",(player,args)=> {
         const hash = alt.hash(args[0]);
         if (args.length != 1) {
-            chat.send(player,"example: /v neon");
+            chat.send(player,`{b00e0e}example: /v neon`);
             return;
         }
         try {
             player["Veh"] = new alt.Vehicle(hash,player.pos.x,player.pos.y,player.pos.z,0,0,0);
             alt.emitClient(player,"event",player["Veh"],-1);
-            chat.send(player,"You must click E to turn on engine.");
+            chat.send(player,`{0eb07d}You must click E to turn on engine.`);
         }
         catch(err) {
             chat.send(player, `{6b4900} Vehicle model: ${args[0]} {a19191}does not exist.`);
@@ -63,13 +77,13 @@ chat.registerCmd("v",(player,args)=> {
 });  //This command called create vehicle.
 
 chat.registerCmd("dvc",(player)=> {
-    if (alt.Player && player.vehicle) {
-        if (player.Veh !== undefined) {
-            player.Veh.destroy();
-            chat.send(player,"You has been succesfully delete vehicle!");
-        };
+    if (alt.Player && player.vehicle && player.Veh !== undefined) {
+        player.Veh.destroy();
+        chat.send(player,`{00d142}You has been succesfully delete vehicle!`);
     };
 });
+
+
 alt.on('playerDeath', (player, killer, weapon) => {
     chat.send(player,"You're unconscious... {eb004e}You will respawn in 3 seconds")
     alt.setTimeout(()=> {
@@ -78,3 +92,56 @@ alt.on('playerDeath', (player, killer, weapon) => {
         return;
     },3000)
 });
+
+
+chat.registerCmd("skin",(player,args)=> {
+    const skinName = args[0];
+    if (!args.length) {
+        chat.send(player,`{b00e0e}example: /skin [skin_name]`);
+        return;
+    };
+
+    if (!PedTable[skinName]) {
+        chat.send(player,`{cc6708}Skin is undefined... (/skin [Skin_Name])`);
+    }
+    else {
+        chat.send(player,"Skin name is good!");
+        player.model = PedTable[skinName];
+    };
+});
+
+chat.registerCmd("vcol",(player,vehicle)=>{
+    player.data.primaryColorChange = vehicle.primaryColor;
+    if (vehicle > 255) {
+        return;
+    }
+
+    player.vehicle.primaryColor = vehicle;
+    chat.send(player,`{00d142}Yeea! You change the vehicle color:{b9de16} ${player.vehicle.primaryColor}`);
+
+});
+
+chat.registerCmd("fix",(player,vehicle)=>{
+    if (alt.Player && player.vehicle) {
+        chat.send(player,`{00d142}Your vehicle has been repaired`);
+        player.vehicle.repair();
+    }
+});
+
+chat.registerCmd("rcol",(player,vehicle)=> {
+    if (player.data.colorChange) {
+       chat.send(player,`{cc6708}You turn off rainbow color mode.`)
+       alt.clearInterval(player.data.colorChange);
+       player.data.colorChange = null;
+       return;
+    }
+
+       player.data.colorChange = alt.setInterval(()=> {
+       const r = randomColor();
+       const g = randomColor();
+       const b = randomColor();
+       player.vehicle.customPrimaryColor = { r, g, b, a: 255 };
+       return;
+   },750);
+   chat.send(player,`{00d142}You turn on rainbow color mode!`);
+})

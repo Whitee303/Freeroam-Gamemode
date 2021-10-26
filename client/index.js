@@ -8,8 +8,15 @@ import native from "natives";
 const localPlayer = alt.Player.local.scriptID;
 
 
-alt.onServer("event",Veh => {
-    alt.setTimeout(() => {
+alt.onServer("event",async Veh => {
+    await new Promise(resolve => {
+        const retry = setInterval(() => {
+             if(Veh?.scriptID !== undefined) {
+                  clearInterval(retry);
+                  return resolve();
+              }
+        }, 50);
+    });
         native.setPedIntoVehicle(localPlayer,Veh.scriptID,-1);
         native.setVehicleEngineOn(Veh.scriptID,false,true,true);
         alt.on('keydown', (key) => {
@@ -18,6 +25,4 @@ alt.onServer("event",Veh => {
                 native.setVehicleEngineOn(Veh.scriptID,true,true,true);
             }
         });
-    },200)
 });
-
