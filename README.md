@@ -6,3 +6,15 @@ Hello everyone, so this is my first script that I post on Github. The freeroam v
 
 
 Very Thanks for help: IF THEN ELSE, Leon,Amper
+
+
+Update list:
+ - 0.11.5 (26.10.2021)
+   - Add random color command (/rcol)
+   - From now on you can change the skin (/skin [Skin_Name]
+   - Update client event (async) 
+   - From now you can repair vehicle
+   - Add Death event
+   -
+-
+   
