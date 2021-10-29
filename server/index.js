@@ -78,6 +78,7 @@ chat.registerCmd("v",(player,args)=> {
 
 chat.registerCmd("dvc",(player)=> {
     if (alt.Player && player.vehicle && player.Veh !== undefined) {
+      if (player.vehicle.colorChange) alt.clearInterval(player.vehicle.colorChange);
         player.Veh.destroy();
         chat.send(player,`{00d142}You has been succesfully delete vehicle!`);
     };
