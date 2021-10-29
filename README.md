@@ -5,7 +5,7 @@ Hello everyone, so this is my first script that I post on Github. The freeroam v
 **Disclaimer**: You must have a Chat Resource https://github.com/Stuyk/altV-Chat-Extended <---- Stuyk resource. Or if you want download "Example Resource pack" from altv.mp <--- (Downloads and Example resource pack)
 
 
-Very Thanks for help: IF THEN ELSE, Leon,Amper
+Very Thanks for help: IF THEN ELSE, Leon,Amper, Six, WhishN
 
 
 Update list:
@@ -15,4 +15,13 @@ Update list:
    - Update client event (async) 
    - From now you can repair vehicle
    - Add Death event
-   
+   ---------------------
+   - 0.11.9 (29.10.2021)
+   - From now on, you can will set the neon color 
+   - If you leave the specify vehicle then, server send notification that you must return to the vehicle within 10 minutes otherwise it will be deleted.
+   - From now on, you can will set any upgrade to the vehicle.
+   - From now you can repair vehicle
+   - From now on, after type command /wp [Weapon_Name] you will get weapon.
+  
+  
+  🎃 🎃  Happy Halloween! 🎃 🎃 
