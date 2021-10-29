@@ -128,20 +128,25 @@ chat.registerCmd("fix",(player,vehicle)=>{
     }
 });
 
-chat.registerCmd("rcol",(player,vehicle)=> {
-    if (player.data.colorChange) {
-       chat.send(player,`{cc6708}You turn off rainbow color mode.`)
-       alt.clearInterval(player.data.colorChange);
-       player.data.colorChange = null;
-       return;
+chat.registerCmd("rcol", (player) =>
+{
+    const vehicleid = player.vehicle;
+    if (vehicleid.colorChange)
+    {
+        chat.send(player, `{cc6708}You turn off rainbow color mode.`)
+        alt.clearInterval(vehicleid.colorChange);
+        vehicleidcolorChange = null;
+        return;
     }
 
-       player.data.colorChange = alt.setInterval(()=> {
-       const r = randomColor();
-       const g = randomColor();
-       const b = randomColor();
-       player.vehicle.customPrimaryColor = { r, g, b, a: 255 };
-       return;
-   },750);
-   chat.send(player,`{00d142}You turn on rainbow color mode!`);
-})
+    vehicleid.colorChange = alt.setInterval(() =>
+    {
+        const r = randomColor();
+        const g = randomColor();
+        const b = randomColor();
+        vehicleid.customPrimaryColor = { r, g, b, a: 255 };
+        vehicleid.customSecondaryColor = { r, g, b, a: 255 };
+        return;
+    }, 750);
+    chat.send(player, `{00d142}You turn on rainbow color mode!`);
+});
