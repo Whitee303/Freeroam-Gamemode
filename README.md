@@ -25,7 +25,7 @@ Update list:
    - -------------------
    - Command list:
    -  /v [Vehicle_Name] <- Creates a Vehicle
-   -  /dvc <-- This command delete specify vehicle (Of course you seat in vehicle)
+   -  /dvc <-- This command delete specified vehicle (Of course you seat in vehicle)
    -  /skin [Skin_Name] <-- This command a sets player skin
    -  /vcol <- Set vehicle color
    -  /rcol <- Set Rainbow mode 
