@@ -92,9 +92,6 @@ chat.registerCmd("v",async(player,args)=> {
             chat.send(player, `{6b4900} Vehicle model: ${args[0]} {a19191}does not exist.`);
             return;
         }
-        if (player["Veh"] !== undefined) {
-            chat.send(player,"Tak");
-        };
 
 });  //This command called create vehicle.
 
