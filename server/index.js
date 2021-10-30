@@ -57,7 +57,7 @@ alt.on('playerConnect', (player) => {
         return;
     }
     alt.setTimeout(()=> {
-        player.pos = {x:spawn.x,y:spawn.y,z:spawn.z};
+        player.spawn(spawn.x,spawn.y,spawn.z,1000);
         chat.broadcast(`{ebba34}${player.name} has been connect to the server.. Actual players count is:{078ff0} ${playerCount}`);
         player.model = 'mp_m_freemode_01';
 
@@ -109,12 +109,8 @@ chat.registerCmd("dvc",(player)=> {
 
 
 alt.on('playerDeath', (player, killer, weapon) => {
-    chat.send(player,"You're unconscious... {eb004e}You will respawn in 3 seconds")
-    alt.setTimeout(()=> {
-        player.health = 199;
-        player.pos = {x:spawn.x,y:spawn.y,z:spawn.z};
-        return;
-    },3000)
+    chat.send(player,"You're unconscious... {eb004e}You will respawn in 3 seconds");
+    player.spawn(spawn.x,spawn.y,spawn.z,3000);
 });
 
 
