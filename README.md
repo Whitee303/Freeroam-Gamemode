@@ -22,6 +22,17 @@ Update list:
    - From now on, you can will set any upgrade to the vehicle.
    - From now you can repair vehicle
    - From now on, after type command /wp [Weapon_Name] you will get weapon.
+   - -------------------
+   - Command list:
+   -  /v [Vehicle_Name] <- Creates a Vehicle
+   -  /dvc <-- This command delete specify vehicle (Of course you seat in vehicle)
+   -  /skin [Skin_Name] <-- This command a sets player skin
+   -  /vcol <- Set vehicle color
+   -  /rcol <- Set Rainbow mode 
+   -  /fix <- Repairs vehicle
+   -  /wp [Weapon_Name] <- gives the player a weapon
+   -  /neonc <- Turn on neons [example: /neonc 255 255 255]
+   -  /tunec <- sets a specific vehicle tuning
   
   
   🎃 🎃  Happy Halloween! 🎃 🎃 
