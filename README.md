@@ -11,7 +11,7 @@ Very Thanks for help: IF THEN ELSE, Leon,Amper, Six, WhishN
 Update list:
  - 0.11.5 (26.10.2021)
    - Add random color command (/rcol)
-   - From now on you can change the skin (/skin [Skin_Name]
+   - From now on you can change the skin (/skin [Skin_Name].
    - Update client event (async) 
    - From now you can repair vehicle
    - Add Death event
