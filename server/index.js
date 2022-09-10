@@ -3,38 +3,24 @@ import { WeaponModel } from './Weapon_list';
 import alt from 'alt-server';
 import * as chat from 'chat'
 /// <reference types="@altv/types-shared" />
-
-//Code Author is Whitee || Discord Contact: Whitee#0296//
-  /////////////////////////////////////////////////////
-/////                                              /////
-    //////////////////////////////////////////////
-
-
-
-
-
-    alt.Player.prototype.init = function init() {
-        this.data = {};
-    };
-    
-        alt.on('playerConnect', (player) => {
-            player.init();
-        });
-
-
+//Code Author is Whitee || Discord Contact: Whitee#5842//
+alt.Player.prototype.init = function init() {
+   this.data = {};
+};  
+alt.on('playerConnect', (player) => {
+  player.init();
+});
 function randomNumber(min, max) {
     return Math.round(Math.random() * (max - min) + min);
-} // This Function From Stuyk Freeroam
+} 
   
 function getRandomListEntry(list) {
     return randomNumber(0, list.length - 1);
-} // This Function From Stuyk Freeroam
+} 
 
 function randomColor() {
     return Math.floor(Math.random() * 255);
 }
-
-
 
 const PositionSpawnTable = [
     {x:-1368.6329345703125,y:57.125274658203125,z:53.6951904296875},
@@ -42,11 +28,10 @@ const PositionSpawnTable = [
     {x:-676.7340698242188,y:312.79119873046875,z:83.081298828125},
     {x:52.760440826416016,y:2786.1494140625,z:57.8740234375}
 
-]; //This Table contains player spawn position. If you want add more position then: {x: yourpositionx, y:yourpositiony, z:yourpositionz}
+];
+//This Table contains player spawn position. If you want add more position then: {x: yourpositionx, y:yourpositiony, z:yourpositionz}
+
 const spawn = PositionSpawnTable[getRandomListEntry(PositionSpawnTable)]; ////
-
-
-
 
 alt.on('playerConnect', (player) => {
 
@@ -217,7 +202,6 @@ chat.registerCmd("neonc",(player,args)=>{
     const color = new alt.RGBA(args[0],args[1],args[2],args[3])
     chat.send(player,`${color}`)
     chat.send(player,`RGB Color: ${Math.floor(color.r)},${color.g},${color.b}`)
-    ///////////////////////////////////////////////////////////////////////////////
     player.vehicle.neon = {
         front: true,
         back: true,
