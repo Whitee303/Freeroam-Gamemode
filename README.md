@@ -3,7 +3,7 @@
 Hello everyone, so this is my first script that I post on Github. The freeroam version is 0.11.5. Over time, there will be Updates related to it.
 
 Very Thanks for help: IF THEN ELSE, Leon,Amper, Six, WhishN,5exyguy
-
+Chat from https://github.com/5exyGuy/altv-vchat
 
 Update list:
  - 0.11.5 (26.10.2021)
