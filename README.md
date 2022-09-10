@@ -2,10 +2,7 @@
 
 Hello everyone, so this is my first script that I post on Github. The freeroam version is 0.11.5. Over time, there will be Updates related to it.
 
-**Disclaimer**: You must have a Chat Resource https://github.com/Stuyk/altV-Chat-Extended <---- Stuyk resource. Or if you want download "Example Resource pack" from altv.mp <--- (Downloads and Example resource pack)
-
-
-Very Thanks for help: IF THEN ELSE, Leon,Amper, Six, WhishN
+Very Thanks for help: IF THEN ELSE, Leon,Amper, Six, WhishN,5exyguy
 
 
 Update list:
@@ -33,6 +30,6 @@ Update list:
    -  /wp [Weapon_Name] <- gives the player a weapon
    -  /neonc <- Turn on neons [example: /neonc 255 255 255]
    -  /tunec <- sets a specific vehicle tuning
-  
-  
-  🎃 🎃  Happy Halloween! 🎃 🎃 
+    -------------------
+   - 0.12 (10.09.2022)
+   -  A complete rewrite of the code
