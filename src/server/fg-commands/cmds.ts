@@ -1,4 +1,4 @@
-import { hash, log, Player, Vehicle, setInterval, RGBA, on, Blip, PointBlip } from "alt-server";
+import { hash, log, Player, Vehicle, setInterval, RGBA, on, Blip, PointBlip, AreaBlip } from "alt-server";
 import { registerCmd, send } from "../chat-master/startup";
 import { PedTable } from "../../shared/lists/Peds";
 import { WeaponModel } from "../../shared/lists/Weapons";
@@ -119,6 +119,12 @@ class CommandsHandler {
 		v.modKit = 1;
 		for (let i = 0;i < 68;i++) v.setMod(i, v.getModsCount(i));
 		for (let i = 0;i < 20;i++) v.setExtra(i, true);
+	}
+	@registerCmd('pos', CommandsHandler.getPosition)
+	private static getPosition(player: Player) {
+		if (!player || !player.valid) { return; }
+		const { x, y, z } = player.pos;
+		log(x, y, z);
 	}
 	@on('playerDisconnect', CommandsHandler.disconnect)
 	private static disconnect(player: Player) {

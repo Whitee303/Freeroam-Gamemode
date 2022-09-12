@@ -27,8 +27,8 @@ function _applyDecoratedDescriptor(target, property, decorators, descriptor, con
     }
     return desc;
 }
-var _class, _dec, _dec1, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _dec8, _dec9, _dec10, _dec11, _dec12, _dec13, _dec14, _dec15, _dec16, _dec17, _dec18, _dec19, _dec20, _dec21, _dec22, _dec23, _dec24, _dec25, _dec26, _dec27, _dec28, _dec29;
-import { hash, Player, Vehicle, setInterval, RGBA, on, PointBlip } from "alt-server";
+var _class, _dec, _dec1, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _dec8, _dec9, _dec10, _dec11, _dec12, _dec13, _dec14, _dec15, _dec16, _dec17, _dec18, _dec19, _dec20, _dec21, _dec22, _dec23, _dec24, _dec25, _dec26, _dec27, _dec28, _dec29, _dec30, _dec31, _dec32;
+import { hash, log, Player, Vehicle, setInterval, RGBA, on, PointBlip } from "alt-server";
 import { registerCmd, send } from "../chat-master/startup";
 import { PedTable } from "../../shared/lists/Peds";
 import { WeaponModel } from "../../shared/lists/Weapons";
@@ -134,6 +134,13 @@ let CommandsHandler = ((_class = class CommandsHandler {
         for(let i = 0; i < 68; i++)v.setMod(i, v.getModsCount(i));
         for(let i1 = 0; i1 < 20; i1++)v.setExtra(i1, true);
     }
+    static getPosition(player) {
+        if (!player || !player.valid) {
+            return;
+        }
+        const { x , y , z  } = player.pos;
+        log(x, y, z);
+    }
     static disconnect(player) {
         if (player["Veh"]) {
             player['Veh'].destroy();
@@ -203,11 +210,17 @@ let CommandsHandler = ((_class = class CommandsHandler {
     _dec24,
     _dec25,
     _dec26
-], Object.getOwnPropertyDescriptor(_class, "setVehicleFullTune"), _class), _dec27 = on('playerDisconnect', _class.disconnect), _dec28 = typeof Reflect !== "undefined" && typeof Reflect.metadata === "function" && Reflect.metadata("design:type", Function), _dec29 = typeof Reflect !== "undefined" && typeof Reflect.metadata === "function" && Reflect.metadata("design:paramtypes", [
+], Object.getOwnPropertyDescriptor(_class, "setVehicleFullTune"), _class), _dec27 = registerCmd('pos', _class.getPosition), _dec28 = typeof Reflect !== "undefined" && typeof Reflect.metadata === "function" && Reflect.metadata("design:type", Function), _dec29 = typeof Reflect !== "undefined" && typeof Reflect.metadata === "function" && Reflect.metadata("design:paramtypes", [
     typeof Player === "undefined" ? Object : Player
-]), _applyDecoratedDescriptor(_class, "disconnect", [
+]), _applyDecoratedDescriptor(_class, "getPosition", [
     _dec27,
     _dec28,
     _dec29
+], Object.getOwnPropertyDescriptor(_class, "getPosition"), _class), _dec30 = on('playerDisconnect', _class.disconnect), _dec31 = typeof Reflect !== "undefined" && typeof Reflect.metadata === "function" && Reflect.metadata("design:type", Function), _dec32 = typeof Reflect !== "undefined" && typeof Reflect.metadata === "function" && Reflect.metadata("design:paramtypes", [
+    typeof Player === "undefined" ? Object : Player
+]), _applyDecoratedDescriptor(_class, "disconnect", [
+    _dec30,
+    _dec31,
+    _dec32
 ], Object.getOwnPropertyDescriptor(_class, "disconnect"), _class), _class);
 CommandsHandler;

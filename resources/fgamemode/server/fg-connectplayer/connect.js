@@ -1,6 +1,7 @@
 import { on, Player, PointBlip } from "alt-server";
-import { ExternalFunctions } from '../../shared/fg-external/functions';
+import { PositionSpawnTable } from "../../shared/lists/Positions";
 import { addSuggestion, broadcast } from "../chat-master/startup";
+import { ExternalFunctionsServer } from "../fg-external/functions";
 Player.prototype.init = function init() {
     this.data = {};
 };
@@ -64,29 +65,6 @@ const suggestions = [
         description: 'Upgrade your vehicle to the maximum level!'
     }, 
 ];
-const PositionSpawnTable = [
-    {
-        x: -1368.6329345703125,
-        y: 57.125274658203125,
-        z: 53.6951904296875
-    },
-    {
-        x: -666.949462890625,
-        y: -135.25714111328125,
-        z: 37.906982421875
-    },
-    {
-        x: -676.7340698242188,
-        y: 312.79119873046875,
-        z: 83.081298828125
-    },
-    {
-        x: 52.760440826416016,
-        y: 2786.1494140625,
-        z: 57.8740234375
-    }
-];
-const { x , y , z  } = PositionSpawnTable[ExternalFunctions.getRandomListEntry(PositionSpawnTable)];
 class HandlePlayerConnect {
     static init() {
         on('playerConnect', HandlePlayerConnect.propagate);
@@ -100,7 +78,7 @@ class HandlePlayerConnect {
         broadcast(`${player.name} Dołączył na serwer! Liczba graczy: ${playerCount}`, 2);
         player.init();
         player.setStreamSyncedMeta('NICKNAME', player.name);
-        player.spawn(x, y, z);
+        ExternalFunctionsServer.spawnPlayerInRandomPosition(player, PositionSpawnTable);
         if (player.isSpawned) {
             blip.sprite = 1;
             blip.category = 7;
@@ -112,6 +90,7 @@ class HandlePlayerConnect {
             player.model = 'mp_m_freemode_01';
             player.setWeather(1);
         }
+        player.emit('fixminimap');
         addSuggestion(player, suggestions);
     }
 }

@@ -1,7 +1,7 @@
 import { Player, Vehicle } from "alt-server";
 import { ExternalFunctions } from "../../shared/fg-external/functions";
 
-class ExternalFunctionsServer extends ExternalFunctions {
+export class ExternalFunctionsServer extends ExternalFunctions {
 	static getPlayersInRange(pos, range, dimension = 0) {
 		if (pos === undefined || range === undefined) {
 			throw new Error('GetPlayersInRange => pos or range is undefined');
@@ -16,5 +16,9 @@ class ExternalFunctionsServer extends ExternalFunctions {
 	}
 	static getClosestVehicle(player: Player) {
 		return ExternalFunctionsServer.getClosestVectorFromGroup(player.pos, [...Vehicle.all]);
+	}
+	static spawnPlayerInRandomPosition(player: Player, positions: any[]) {
+		const { x, y, z } = positions[ExternalFunctions.getRandomListEntry(positions)];
+		player.spawn(x, y, z);
 	}
 }
